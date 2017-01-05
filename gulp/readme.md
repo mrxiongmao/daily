@@ -1,9 +1,5 @@
 # 使用 SCSS + gulp + LiveReload 无刷新更新页面样式
 
-**Version 1.0.0**
-
-by 小熊
-
 ----
 
 在工作中我们使用 CSS 预编译语言 SASS 来提高工作效率，特别能对移动端 px → rem 进行自动换算，SASS 有 sass 和 scss 两种语法，前面一种跟常规的 css 完全不同，学习起来略麻烦，所以我们使用 scss（跟 less 类似）
