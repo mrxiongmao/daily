@@ -59,3 +59,13 @@ gulp 需要全局安装一下，打开 cmd 输入 `npm install gulp -g`
 
 
 tips：.gitignore文件内可写入忽视上传的文件
+
+
+## 那些年踩的坑 ##
+2017-01-06:
+
+这几天在做项目的时候发现一个坑，gulp监听预编译无刷新的livereload功能忽然全部失效了，但代码执行成功了，页面也调用了livereload，可就是绑不上去，终于今天找到了问题：
+
+因为我用的是sublime的编辑器，sublime中安装了一个livereload插件，如果在 SublimeText 这样的编译器中使用了 LiveReload 插件，可能会引起 Chrome 的 LiveReload 不能自动刷新的问题。因为 Sublime 的插件无法监听到预编译的文件，而 Chrome 的 LiveReload 插件优先使用了**首先启动**的那个程序开启的 WebSocket。
+
+我大概是这么理解的，欢迎补充
