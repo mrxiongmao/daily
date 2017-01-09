@@ -27,6 +27,7 @@ SCSS 的相关知识大家可以在网上自行搜索学习，这里主要说说
 安装完 ruby 之后，可以打开 cmd 在里面输入 `ruby --version`，如果能显示版本号，说明 ruby 安装成功
 
 安装 sass：在 cmd 中输入 `gem install sass`，因为国内网络问题，所以如果安装不动，请翻墙后再试
+遇到ruby插件无法安装时，请参考[http://gems.ruby-china.org/](http://gems.ruby-china.org/)把ruby的镜像源替换成国内的。
 
 #### 安装 gulp
 
