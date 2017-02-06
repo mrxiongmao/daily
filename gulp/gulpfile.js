@@ -1,25 +1,34 @@
 var gulp = require('gulp');
-//var sass = require('gulp-sass');
 var sass = require('gulp-ruby-sass');
-var sourcemaps = require('gulp-sourcemaps');
 var livereload = require('gulp-livereload');
-
-
-
-//发布CSS，用于生成环境
-gulp.task('scss', function () {
+var sourcemaps = require('gulp-sourcemaps');
+var spritesmith = require("gulp.spritesmith");
+gulp.task('watch', function() {
+    livereload.listen();
+    gulp.watch('./scss/_sprite.scss', ['sprite']);
+    gulp.watch(['./scss/*.scss','!./scss/_sprite.scss'], ['scss']);
+    gulp.watch('./css/*.css').on('change', livereload.changed);
+});
+gulp.task('scss', function() {
     return sass('./scss/*.scss', {
             sourcemap: true,
-            style: 'expanded'
+            style: 'compressed'
         })
         .on('error', sass.logError)
         .pipe(sourcemaps.write('../scss-maps'))
         .pipe(gulp.dest('./css'));
 });
 
-//自动监视LESS文件并LiveReload页面
-gulp.task('scss-watch', function () {
-    livereload.listen();
-    gulp.watch('./scss/*.scss', ['scss']);
-    gulp.watch('./css/*.css').on('change', livereload.changed);
+gulp.task('sprite', function () {
+  var spriteData = gulp.src('images/icon/*.png').pipe(spritesmith({
+    imgName: 'sprite.png',
+    cssName: '../scss/_sprite.scss',
+    cssFormat : 'css',
+    imgPath : '../images/sprite.png',
+    padding : 2,
+    cssVarMap: function(sprite){
+        sprite.name = sprite.name.replace("icon-","");
+    }
+  }));
+  return spriteData.pipe(gulp.dest('images'));
 });
